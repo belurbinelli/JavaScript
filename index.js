@@ -1,15 +1,17 @@
-function edadMayorOMenor ( numero, mayorOMenor ) {
+function listaDeInvitados() {
+    nombre = prompt ("Ingrese nombre")
+    apellido = prompt ("Ingrese apellido")
+    edad = prompt ("Ingrese edad")
+    console.log(`Invitado Ingresado: ${nombre} ${apellido} ${edad} años`)
+}
+function repetirAccion () {
+    accion = prompt("Para ingresar un invitado nuevo poner CONTINUAR, para salir poner SALIR")
+    return accion
+}
+listaDeInvitados()
+accion = repetirAccion()
+while(accion != "SALIR" && accion != "salir"){
+    listaDeInvitados()
+    accion = repetirAccion()
+}
 
-for(let i = 1; i <= numero; i++){
-
-    if ( mayorOMenor === "mayor" && i >= 18 ){
-    console.log(i)
-}
-    else if ( mayorOMenor === "menor" && i < 18){
-    console.log(i)
-}
-}
-}
-
-edadMayorOMenor (8, "menor")
-edadMayorOMenor (18, "mayor")
