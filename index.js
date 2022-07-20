@@ -15,3 +15,39 @@ while(accion != "SALIR" && accion != "salir"){
     accion = repetirAccion()
 }
 
+const invitados = [
+    {
+        nombre: "Belen",
+        apellido: "Urbinelli",
+        edad: 25
+    },
+    {
+        nombre: "Candela",
+        apellido: "Urbinelli",
+        edad: 7
+    },
+    {
+        nombre: "Veronica",
+        apellido: "Poncia",
+        edad: 45
+    },
+    {
+        nombre: "Julieta",
+        apellido: "Urbinelli",
+        edad: 12
+    },
+    {
+        nombre: "Julio",
+        apellido: "Urbinelli",
+        edad: 44
+    },
+]
+
+
+invitados.push ({
+        nombre: "Pablo",
+        apellido: "Altera",
+        edad: 33,
+})
+
+console.log(invitados);
