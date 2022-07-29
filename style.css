@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.contenedorLista {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tarjeta {
+    width: auto;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+}

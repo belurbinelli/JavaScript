@@ -64,3 +64,24 @@ const invitadosMenoresDeEdad = invitados.filter((elemento) => {
 
 
 console.log(invitadosMenoresDeEdad)
+
+const tarjetasHtml= invitados.reduce ((acc, elemento, i) => {   
+
+    return acc = acc + `    
+        <div class="tarjeta"> 
+            <p>
+                Nombre ${elemento.nombre} <br> 
+                Apellido: ${elemento.apellido} <br> 
+                Edad: ${elemento.edad}<br>
+            </p> 
+        </div>
+    `       
+},"")
+
+console.log(tarjetasHtml)
+
+const contenedorLista = document.querySelector(".contenedorLista")
+
+console.log(contenedorLista)
+
+contenedorLista.innerHTML = tarjetasHtml
