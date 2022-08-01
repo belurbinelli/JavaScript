@@ -1,19 +1,23 @@
-body {
-    margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&display=swap");
+* {
     padding: 0;
+    margin: 0;
+    }
+
+body {
+    margin: 15px;
+    padding: 15px;
 }
 
-.contenedorLista {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.tarjeta {
-    width: auto;
-    background-color: pink;
+#formulario {
+    font-family: 'Noto Serif', serif;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 1rem;
-    padding: 1rem;
+    justify-content: space-between;
+}
+
+.texto {
+    font-family: 'Noto Serif', serif;
+    justify-content: center;
+    margin: 15px;
 }

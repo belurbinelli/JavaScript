@@ -1,42 +1,15 @@
-const invitados = [
-    {
-        nombre: "Belen",
-        apellido: "Urbinelli",
-        edad: 25
-    },
-    {
-        nombre: "Candela",
-        apellido: "Urbinelli",
-        edad: 7
-    },
-    {
-        nombre: "Veronica",
-        apellido: "Poncia",
-        edad: 45
-    },
-    {
-        nombre: "Julieta",
-        apellido: "Urbinelli",
-        edad: 12
-    },
-    {
-        nombre: "Julio",
-        apellido: "Urbinelli",
-        edad: 44
-    },
-]
-
-function listaDeInvitados() {
+/*function listaDeInvitados() {
     nombre = prompt ("Ingrese nombre")
     apellido = prompt ("Ingrese apellido")
     edad = prompt ("Ingrese edad")
     console.log(`Invitado Ingresado: ${nombre} ${apellido} ${edad} años`)
     invitados.push ({
-        nombre: nombre,
+    nombre: nombre,
         apellido: apellido,
         edad: edad,
 })
 }
+
 function repetirAccion () {
     accion = prompt("Para ingresar un invitado nuevo poner CONTINUAR, para salir poner SALIR")
     return accion
@@ -49,7 +22,6 @@ while(accion != "SALIR" && accion != "salir"){
 }
 
 
-console.log(invitados);
 
 const invitadosMayoresDeEdad = invitados.filter((elemento) => {
     return elemento.edad > 18
@@ -84,4 +56,31 @@ const contenedorLista = document.querySelector(".contenedorLista")
 
 console.log(contenedorLista)
 
-contenedorLista.innerHTML = tarjetasHtml
+contenedorLista.innerHTML = tarjetasHtml*/
+
+const formulario = document.querySelector("#formulario")
+const inputNombre = document.querySelector("#campo-nombre")
+const inputApellido = document.querySelector("#campo-apellido")
+const inputEdad = document.querySelector("#campo-edad")
+const inputContacto = document.querySelector("#campo-contacto")
+const submit = document.querySelector("#submit")
+
+console.log(formulario, inputNombre, inputApellido, inputEdad, inputContacto)
+
+let invitados = []
+
+class Invitados {
+    constructor(nombre, apellido, edad, contacto){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.contacto = contacto;
+    }
+}
+
+formulario.onsubmit = (event) => {
+    event.preventDefault()
+    console.log(event)
+    invitados.push(new Invitados(inputNombre.value, inputApellido.value, inputEdad.value, inputContacto.value))
+    console.log(invitados)
+}
