@@ -35,28 +35,8 @@ const invitadosMenoresDeEdad = invitados.filter((elemento) => {
 })
 
 
-console.log(invitadosMenoresDeEdad)
+console.log(invitadosMenoresDeEdad)*/
 
-const tarjetasHtml= invitados.reduce ((acc, elemento, i) => {   
-
-    return acc = acc + `    
-        <div class="tarjeta"> 
-            <p>
-                Nombre ${elemento.nombre} <br> 
-                Apellido: ${elemento.apellido} <br> 
-                Edad: ${elemento.edad}<br>
-            </p> 
-        </div>
-    `       
-},"")
-
-console.log(tarjetasHtml)
-
-const contenedorLista = document.querySelector(".contenedorLista")
-
-console.log(contenedorLista)
-
-contenedorLista.innerHTML = tarjetasHtml*/
 
 const formulario = document.querySelector("#formulario")
 const inputNombre = document.querySelector("#campo-nombre")
@@ -67,7 +47,7 @@ const submit = document.querySelector("#submit")
 
 console.log(formulario, inputNombre, inputApellido, inputEdad, inputContacto)
 
-let invitados = []
+const invitados = []
 
 class Invitados {
     constructor(nombre, apellido, edad, contacto){
@@ -78,9 +58,36 @@ class Invitados {
     }
 }
 
+const contenedorLista = document.querySelector(".contenedorLista")
+
+function tarjeta(){
+    const tarjetasHtml= invitados.reduce ((acc, elemento, i) => {   
+
+        return acc = acc + `    
+            <div class="tarjeta"> 
+                <p>
+                    Nombre: ${elemento.nombre} <br> 
+                    Apellido: ${elemento.apellido} <br> 
+                    Edad: ${elemento.edad}<br>
+                    Contacto: ${elemento.contacto}
+                </p> 
+            </div>
+        `       
+    },"")
+    contenedorLista.innerHTML = tarjetasHtml
+}
+
+
 formulario.onsubmit = (event) => {
     event.preventDefault()
     console.log(event)
     invitados.push(new Invitados(inputNombre.value, inputApellido.value, inputEdad.value, inputContacto.value))
     console.log(invitados)
+    
+    const tarjetasHtml= tarjeta()
+
 }
+
+console.log(contenedorLista)
+
+

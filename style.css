@@ -9,6 +9,24 @@ body {
     padding: 15px;
 }
 
+.contenedorLista {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tarjeta {
+    font-family: 'Noto Serif', serif;
+    width: auto;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid fuchsia;
+    border-radius: 10px;
+}
+
 #formulario {
     font-family: 'Noto Serif', serif;
     display: flex;
