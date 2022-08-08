@@ -1,64 +1,32 @@
-/*function listaDeInvitados() {
-    nombre = prompt ("Ingrese nombre")
-    apellido = prompt ("Ingrese apellido")
-    edad = prompt ("Ingrese edad")
-    console.log(`Invitado Ingresado: ${nombre} ${apellido} ${edad} años`)
-    invitados.push ({
-    nombre: nombre,
-        apellido: apellido,
-        edad: edad,
-})
-}
-
-function repetirAccion () {
-    accion = prompt("Para ingresar un invitado nuevo poner CONTINUAR, para salir poner SALIR")
-    return accion
-}
-listaDeInvitados()
-accion = repetirAccion()
-while(accion != "SALIR" && accion != "salir"){
-    listaDeInvitados()
-    accion = repetirAccion()
-}
-
-
-
-const invitadosMayoresDeEdad = invitados.filter((elemento) => {
-    return elemento.edad > 18
-})
-
-
-console.log(invitadosMayoresDeEdad)
-
-const invitadosMenoresDeEdad = invitados.filter((elemento) => {
-    return elemento.edad < 18
-})
-
-
-console.log(invitadosMenoresDeEdad)*/
-
-
+const inputDni = document.getElementById("dni")
+const inputContrasenia = document.getElementById("contrasenia")
+const formIngreso = document.getElementById("ingreso")
 const formulario = document.querySelector("#formulario")
 const inputNombre = document.querySelector("#campo-nombre")
 const inputApellido = document.querySelector("#campo-apellido")
 const inputEdad = document.querySelector("#campo-edad")
 const inputContacto = document.querySelector("#campo-contacto")
 const submit = document.querySelector("#submit")
+const main = document.querySelector("main")
+const contenedorLista = document.querySelector(".contenedorLista")
+const borrar = document.querySelector("#borrar")
 
-console.log(formulario, inputNombre, inputApellido, inputEdad, inputContacto)
-
-const invitados = []
-
-class Invitados {
-    constructor(nombre, apellido, edad, contacto){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.contacto = contacto;
-    }
+const usuario = {
+    dni: "11223344",
+    contrasenia: "belen"
 }
 
-const contenedorLista = document.querySelector(".contenedorLista")
+
+let invitados = []
+const obtenerInvitadosDelLS = localStorage.getItem("invitados")
+const invitadosParseado = JSON.parse(obtenerInvitadosDelLS) ?? []
+invitados = (invitadosParseado)
+
+
+function subirInvitadosLS() {
+    invitadosJSON = JSON.stringify(invitados)
+    localStorage.setItem("invitados", invitadosJSON)
+}
 
 function tarjeta(){
     const tarjetasHtml= invitados.reduce ((acc, elemento, i) => {   
@@ -76,18 +44,38 @@ function tarjeta(){
     },"")
     contenedorLista.innerHTML = tarjetasHtml
 }
+tarjeta()
 
+formIngreso.onsubmit = (e) => {
+    e.preventDefault()
+    if ( inputDni.value === usuario.dni && inputContrasenia.value === usuario.contrasenia ) {
+        main.style.display = "flex"
+        main.style.flexDirection = "column"
+        formIngreso.style.display ="none"
+        localStorage.setItem("usuario", true)
+    } else {
+        formIngreso.reset()
+        alert("El usuario o contraseña es incorrecto")
+    }
+}
 
 formulario.onsubmit = (event) => {
     event.preventDefault()
-    console.log(event)
-    invitados.push(new Invitados(inputNombre.value, inputApellido.value, inputEdad.value, inputContacto.value))
-    console.log(invitados)
+    nombre = inputNombre.value
+    apellido = inputApellido.value
+    edad = inputEdad.value
+    contacto = inputContacto.value
+    invitados.push({nombre, apellido, edad, contacto})
+    subirInvitadosLS()
     
     const tarjetasHtml= tarjeta()
 
 }
 
-console.log(contenedorLista)
-
+borrar.onclick = () => {
+    invitados.pop();
+    alert("El registro ha sido borrado!")
+    subirInvitadosLS()
+    tarjeta()
+}
 
