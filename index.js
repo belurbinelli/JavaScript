@@ -67,6 +67,7 @@ formulario.onsubmit = (event) => {
     contacto = inputContacto.value
     invitados.push({nombre, apellido, edad, contacto})
     subirInvitadosLS()
+    edad >= 18? swal("¡Atención! Es mayor de edad") : swal("¡Atención! Es menor de edad")
     
     const tarjetasHtml= tarjeta()
 
@@ -77,5 +78,5 @@ borrar.onclick = () => {
     alert("El registro ha sido borrado!")
     subirInvitadosLS()
     tarjeta()
+    
 }
-
