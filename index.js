@@ -55,7 +55,10 @@ formIngreso.onsubmit = (e) => {
         localStorage.setItem("usuario", true)
     } else {
         formIngreso.reset()
-        alert("El usuario o contraseña es incorrecto")
+        Toastify({
+        text: "El usuario o contraseña es incorrecto",
+            duration: 3000
+            }).showToast();
     }
 }
 
@@ -67,15 +70,23 @@ formulario.onsubmit = (event) => {
     contacto = inputContacto.value
     invitados.push({nombre, apellido, edad, contacto})
     subirInvitadosLS()
-    edad >= 18? swal("¡Atención! Es mayor de edad") : swal("¡Atención! Es menor de edad")
-    
+    swal({
+        title: "¡Invitado confirmado!",
+        text: "Los datos se registraron correctamente.",
+        icon: "success",
+        button: "Salir",
+        });
+
     const tarjetasHtml= tarjeta()
 
 }
 
 borrar.onclick = () => {
     invitados.pop();
-    alert("El registro ha sido borrado!")
+    Toastify({
+    text: "El registro ha sido borrado",
+        duration: 3000
+        }).showToast();
     subirInvitadosLS()
     tarjeta()
     
