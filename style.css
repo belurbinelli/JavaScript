@@ -36,7 +36,7 @@ body {
 
 .texto {
     font-family: 'Noto Serif', serif;
-    justify-content: center;
+    text-align: center;
     margin: 15px;
 }
 
@@ -55,4 +55,30 @@ body {
 
 main{
     display: none;
+}
+
+#registro{
+    font-family: 'Noto Serif', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: pink;
+    align-items: center;
+    border: 1px solid fuchsia;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+#recuperarPass{
+    font-family: 'Noto Serif', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: pink;
+    align-items: center;
+    border: 1px solid fuchsia;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 1rem;
 }
