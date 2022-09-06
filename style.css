@@ -39,46 +39,39 @@ body {
     text-align: center;
     margin: 15px;
 }
-
-#ingreso{
-    font-family: 'Noto Serif', serif;
+#controlDeIngreso{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+#ingreso {
+    font-family: 'Noto Serif', serif;
+    display: flex;
+    flex-direction: column; 
     background-color: pink;
     align-items: center;
     border: 1px solid fuchsia;
     border-radius: 10px;
     margin: 1rem;
     padding: 1rem;
+    width: 70%;
 }
+
+#registro, #recuperarPass{
+    font-family: 'Noto Serif', serif;
+    display: none;
+    flex-direction: column; 
+    background-color: pink;
+    align-items: center;
+    border: 1px solid fuchsia;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 1rem;
+    width: 70%;
+}
+
 
 main{
     display: none;
-}
-
-#registro{
-    font-family: 'Noto Serif', serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: pink;
-    align-items: center;
-    border: 1px solid fuchsia;
-    border-radius: 10px;
-    margin: 1rem;
-    padding: 1rem;
-}
-
-#recuperarPass{
-    font-family: 'Noto Serif', serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: pink;
-    align-items: center;
-    border: 1px solid fuchsia;
-    border-radius: 10px;
-    margin: 1rem;
-    padding: 1rem;
 }

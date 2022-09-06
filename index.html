@@ -12,12 +12,13 @@
 <body>
     <div class="texto">
     <h1>Lista de invitados</h1>
-</div>
-
-<div>
-    <h2 class="texto">
+    <h2 id="textoInicio">
         Inicie sesión para ingresar a su lista de invitados
     </h2>
+</div>
+
+<div id="controlDeIngreso">
+<div>
     <form id="ingreso">
         <label for="dni">
             DNI
@@ -31,30 +32,32 @@
             <input type="submit" value="Ingresar" />
         </label>
         <div>
-        <button id="registrarse">Registrarse</button>
-        <button id="olvidePass">Olvidé mi contraseña</button>
-    </div>
+        <button id="register">Registrarse</button>
+        <button id="recuperarContrasenia">Olvidé mi contraseña</button>
     </form>
 </div>
 
-<!-- <div id="registro">
+<div id="registro">
     <h2 class="texto">
         Nuevo usuario
     </h2>
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre y Apellido"/>
+        <input type="text" name="nombre" id="nuevoNombre" placeholder="Nombre y Apellido"/>
         <input type="text" name="dni" id="nuevoDni" placeholder="DNI"/>
-        <input type="password" name="contrasenia" id="nuevaContraseña" placeholder="Contraseña"/>
-        <input type="submit" value="Registrarse">
+        <input type="password" name="contrasenia" id="nuevaContrasenia" placeholder="Contraseña"/>
+        <button id="registrarse">Registrarse</button>
 </div>
 <div id="recuperarPass">
     <h2 class="texto">
         Recuperar contraseña
     </h2>
     <input type="text" id="dniRecuperar" placeholder="Ingrese su DNI"/>
-    <input type="password" id="nuevaPass" placeholder="Ingrese su nueva contraseña"/>
-    <input type="password" id="confirmarPass" placeholder="Confirme su nueva contraseña"/>
+    <input type="password" id="nuevaPass" placeholder="Ingrese contraseña"/>
+    <input type="password" id="confirmarPass" placeholder="Confirme contraseña"/>
     <button id="cambiarPass">Cambiar contraseña</button>
-</div> -->
+</div>
+</div>
+</div>
+
 
 <main>
         <section id="formulario">

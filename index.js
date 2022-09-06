@@ -10,23 +10,98 @@ const submit = document.querySelector("#submit")
 const main = document.querySelector("main")
 const contenedorLista = document.querySelector(".contenedorLista")
 const borrar = document.querySelector("#borrar")
+const formRegistro = document.getElementById("registro")
+const formPass = document.getElementById("recuperarPass")
+const controlIngreso = document.getElementById("controlDeIngreso")
+const register = document.getElementById("register")
+const recuperarContrasenia = document.getElementById("recuperarContrasenia")
+const nuevoNombre = document.getElementById("nuevoNombre")
+const nuevoDni = document.getElementById("nuevoDni")
+const nuevaContrasenia = document.getElementById("nuevaContrasenia")
+const registrarse = document.getElementById("registrarse")
+const dniRecuperar= document.getElementById("dniRecuperar")
+const nuevaPass= document.getElementById("nuevaPass")
+const confirmarPass= document.getElementById("confirmarPass")
+const cambiarPass = document.getElementById("cambiarPass")
 
-const usuario = {
-    dni: "11223344",
-    contrasenia: "belen"
+
+let usuarios = []
+
+
+function subirUsuariosLocStr(){
+    localStorage.setItem("usuarios", JSON.stringify(usuarios))
+}
+
+function bajarUsuariosLocStr(){
+    usuarios= JSON.parse(localStorage.getItem("usuarios")) || []
+}
+
+bajarUsuariosLocStr()
+
+class usuarioNuevo {
+    constructor(nombre, contrasenia, dni) {
+        this.nombre = nombre,
+        this.contrasenia = contrasenia,
+        this.dni = dni
+    }
+}
+
+function registreishon() {
+    const newUser = new usuarioNuevo(nuevoNombre.value, nuevaContrasenia.value, nuevoDni.value)
+    usuarios.push(newUser)
+}
+
+registrarse.onclick = (e) => {
+    e.preventDefault()
+        let dniExiste = usuarios.some((usuarioN) => usuarioN.dni === nuevoDni.value)
+        let nombreExiste = usuarios.some((usuarioN) => usuarioN.nombre === nuevoNombre.value)
+
+        function nuevoUsuario() {
+            registreishon()
+            subirUsuariosLocStr()
+        }
+        (dniExiste || nombreExiste) ? alert("Cuenta existente!") : nuevoUsuario()
+
+}        
+
+function cambiarContrasenia(){
+    let dniGuardado = usuarios.find(usuarioN => usuarioN.dni === dniRecuperar.value)
+
+    if (dniGuardado !== undefined) {
+        if (nuevaPass.value === confirmarPass.value) {
+            dniGuardado.contrasenia = nuevaPass.value
+            Toastify({
+                text: "La contraseña fue modificada",
+                    duration: 3000
+                    }).showToast();
+        subirUsuariosLocStr()
+        }
+        else {
+            Toastify({
+                text: "Datos no vaidos",
+                    duration: 3000
+                    }).showToast();
+        }
+    }
+}
+
+cambiarPass.onclick = (e) => {
+    e.preventDefault()
+    cambiarContrasenia()
 }
 
 
-let invitados = []
-const obtenerInvitadosDelLS = localStorage.getItem("invitados")
-const invitadosParseado = JSON.parse(obtenerInvitadosDelLS) ?? []
-invitados = (invitadosParseado)
+let invitados
+
+
 
 
 function subirInvitadosLS() {
     invitadosJSON = JSON.stringify(invitados)
     localStorage.setItem("invitados", invitadosJSON)
 }
+
+
 
 function tarjeta(){
     const tarjetasHtml= invitados.reduce ((acc, elemento, i) => {   
@@ -44,23 +119,75 @@ function tarjeta(){
     },"")
     contenedorLista.innerHTML = tarjetasHtml
 }
-tarjeta()
+
+if (invitados != undefined){
+    tarjeta()
+}
+
+function cargarLista() {
+
+    fetch("http://127.0.0.1:5500/data.json")
+    .then(res => res.json())
+    .then(data => { invitados = data 
+    subirInvitadosLS()
+    tarjeta()
+            } ) 
+}
+
+function iniciarLista() {
+const invitadosParseado = JSON.parse(localStorage.getItem("invitados")) ?? cargarLista()
+invitados = (invitadosParseado)
+}
+
+iniciarLista()
+
+
+
+function logIn() {
+    let usuarioIngresado = usuarios.find(usuarioN => usuarioN.dni === inputDni.value)
+
+    if (usuarioIngresado == undefined) {
+        formIngreso.reset()
+        Toastify({
+        text: "El usuario es incorrecto",
+            duration: 3000
+            }).showToast();
+        
+    } else if (usuarioIngresado.contrasenia !== inputContrasenia.value) {
+        formIngreso.reset()
+        Toastify({
+        text: "La contraseña es incorrecta",
+            duration: 3000
+            }).showToast();
+
+    } else {
+        main.style.display = "flex"
+        main.style.flexDirection = "column"
+        controlIngreso.style.display = "none"
+    }
+}
+
 
 formIngreso.onsubmit = (e) => {
     e.preventDefault()
-    if ( inputDni.value === usuario.dni && inputContrasenia.value === usuario.contrasenia ) {
-        main.style.display = "flex"
-        main.style.flexDirection = "column"
-        formIngreso.style.display ="none"
-        localStorage.setItem("usuario", true)
-    } else {
-        formIngreso.reset()
-        Toastify({
-        text: "El usuario o contraseña es incorrecto",
-            duration: 3000
-            }).showToast();
-    }
+    logIn()
 }
+
+register.onclick = (e) => {
+    e.preventDefault()
+    formRegistro.style.display="flex"
+    formPass.style.display="none"
+
+}
+
+recuperarContrasenia.onclick = (e) => {
+    e.preventDefault()
+    formPass.style.display="flex"
+    formRegistro.style.display="none"
+
+}
+
+
 
 formulario.onsubmit = (event) => {
     event.preventDefault()
@@ -77,7 +204,7 @@ formulario.onsubmit = (event) => {
         button: "Salir",
         });
 
-    const tarjetasHtml= tarjeta()
+    const tarjetasHtml = tarjeta()
 
 }
 
@@ -90,12 +217,4 @@ borrar.onclick = () => {
     subirInvitadosLS()
     tarjeta()
     
-}
-
-formulario.onsubmit = (e) => {
-    e.preventDefault()
-
-    fetch("http://127.0.0.1:5500/data.json")
-    .then(res => res.json())
-    .then(data => console.log(data))
 }
