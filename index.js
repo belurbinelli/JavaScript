@@ -51,6 +51,13 @@ function registreishon() {
     usuarios.push(newUser)
 }
 
+function mensajeCuenta(){
+    Toastify({
+        text: "Cuenta existente!",
+            duration: 3000
+            }).showToast();
+}
+
 registrarse.onclick = (e) => {
     e.preventDefault()
         let dniExiste = usuarios.some((usuarioN) => usuarioN.dni === nuevoDni.value)
@@ -59,8 +66,14 @@ registrarse.onclick = (e) => {
         function nuevoUsuario() {
             registreishon()
             subirUsuariosLocStr()
+            swal({
+                title: "¡Usuario registrado!",
+                icon: "success",
+                button: "Salir",
+                });
+            
         }
-        (dniExiste || nombreExiste) ? alert("Cuenta existente!") : nuevoUsuario()
+        (dniExiste || nombreExiste) ? mensajeCuenta(): nuevoUsuario()
 
 }        
 
@@ -70,10 +83,11 @@ function cambiarContrasenia(){
     if (dniGuardado !== undefined) {
         if (nuevaPass.value === confirmarPass.value) {
             dniGuardado.contrasenia = nuevaPass.value
-            Toastify({
-                text: "La contraseña fue modificada",
-                    duration: 3000
-                    }).showToast();
+            swal({
+                title: "¡Contraseña modificada!",
+                icon: "success",
+                button: "Salir",
+                });
         subirUsuariosLocStr()
         }
         else {
