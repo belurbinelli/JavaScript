@@ -75,3 +75,14 @@ body {
 main{
     display: none;
 }
+
+#cerrarSesion{
+    display: none;
+    flex-direction: column;
+    margin-top: 20px;
+    font-family: 'Noto Serif', serif;
+}
+
+#borrar {
+    font-family: 'Noto Serif', serif;
+}

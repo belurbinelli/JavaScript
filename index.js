@@ -23,6 +23,7 @@ const dniRecuperar= document.getElementById("dniRecuperar")
 const nuevaPass= document.getElementById("nuevaPass")
 const confirmarPass= document.getElementById("confirmarPass")
 const cambiarPass = document.getElementById("cambiarPass")
+const cerrarSesion = document.getElementById("cerrarSesion")
 
 
 let usuarios = []
@@ -178,6 +179,7 @@ function logIn() {
         main.style.display = "flex"
         main.style.flexDirection = "column"
         controlIngreso.style.display = "none"
+        cerrarSesion.style.display = "flex"
     }
 }
 
@@ -231,4 +233,8 @@ borrar.onclick = () => {
     subirInvitadosLS()
     tarjeta()
     
+}
+
+cerrarSesion.onclick = () => {
+    location.reload()
 }
